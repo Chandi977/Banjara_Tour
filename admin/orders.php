@@ -1,22 +1,19 @@
 <?php
-
 session_start();
 
-if (!isset($_SESSION['aid'])) {
-	header("location:admin/admin.php");
-} else {
-	$al = mysqli_connect("localhost", "root", "", "banjara tour and travel");
-	$aid = $_SESSION['aid'];
-	$a = mysqli_query($al, "SELECT * FROM admin WHERE aid='$aid'");
-	$b = mysqli_fetch_array($a);
-	$name = $b['name'];
-}
+include "../config.php"; // Include the config file to establish database connection
 
+if (!isset($_SESSION['aid'])) {
+    header("location:admin.php");
+} else {
+    $aid = $_SESSION['aid'];
+    $a = mysqli_query($conn, "SELECT * FROM admin WHERE aid='$aid'");
+    $b = mysqli_fetch_array($a);
+    $name = $b['name'];
+}
 ?>
 
-
 <html>
-
-
+<!-- Your HTML content goes here -->
 
 </html>

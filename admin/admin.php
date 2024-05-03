@@ -1,28 +1,45 @@
 <?php
-// include("setting.php");
+include("../config.php"); // Include the config.php file to establish the database connection
 session_start();
+
 if (isset($_SESSION['aid'])) {
-	header("location:dashboard.php");
+    header("location:dashboard.php");
 }
+
 if (isset($_POST["sub"])) {
-	$e = $_POST['aid'];
-	$p = $_POST['pass'];
-	if ($_POST['aid'] != NULL && $_POST['pass'] != NULL) {
-		$al = mysqli_connect("localhost", "root", "", "banjara tour and travel");
-		$sql = "SELECT * FROM admin WHERE aid ='$e' AND password='$p'";
-		$result = mysqli_query($al, $sql);
-		$row = mysqli_fetch_row($result);
-		if ($row > 0) {
-			// echo "ok";
-			$_SESSION["aid"] = $row[0];
-			$_SESSION["name"] = $row[1];
-			header("location:dashboard.php");
-		} else {
-			$info = "Wrong UserName Or Password";
-		}
-	}
+    $e = $_POST['aid'];
+    $p = $_POST['pass'];
+    if ($_POST['aid'] != NULL && $_POST['pass'] != NULL) {
+        // Establish the database connection using the configuration from config.php
+        $al = mysqli_connect($host, $username, $password, $database);
+        
+        // Check if the connection was successful
+        if (!$al) {
+            die("Connection failed: " . mysqli_connect_error());
+        }
+        
+        // Use prepared statements to prevent SQL injection
+        $sql = "SELECT * FROM admin WHERE aid = ? AND password = ?";
+        $stmt = mysqli_stmt_init($al);
+        
+        if (mysqli_stmt_prepare($stmt, $sql)) {
+            mysqli_stmt_bind_param($stmt, "ss", $e, $p);
+            mysqli_stmt_execute($stmt);
+            $result = mysqli_stmt_get_result($stmt);
+            $row = mysqli_fetch_assoc($result);
+            
+            if ($row) {
+                $_SESSION["aid"] = $row['aid'];
+                $_SESSION["name"] = $row['name'];
+                header("location:dashboard.php");
+            } else {
+                $info = "Wrong UserName Or Password";
+            }
+        }
+    }
 }
 ?>
+
 <html>
 
 <head>

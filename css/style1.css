@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700&display=swap");
+
 :root {
   --primaryColor: #f1f1f1;
   --black: #222;
@@ -71,6 +72,7 @@ html {
   scroll-padding-top: 6rem;
   scroll-behavior: smooth;
 }
+
 html::-webkit-scrollbar {
   width: 1rem;
 }
@@ -169,6 +171,7 @@ section {
   color: #10221b;
   display: none;
 }
+
 .icons .login-name {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   /* font-weight: 800; */
@@ -439,10 +442,12 @@ section {
   font-size: 3rem;
   color: #10221b;
 }
+
 .category {
   background: #fff;
   border-radius: 1rem;
 }
+
 .category .box-container {
   display: -ms-grid;
   display: grid;
@@ -516,6 +521,7 @@ section {
   padding: 2rem;
   margin: 2rem 0;
 }
+
 .book .row {
   display: flex;
   flex-wrap: wrap;
@@ -571,11 +577,13 @@ section {
   padding: 1rem 0;
   color: #666;
 }
+
 .destination {
   background: #fff;
   border-radius: 1rem;
   margin: 2rem 0;
 }
+
 .destination .box-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(27rem, 1fr));
@@ -633,11 +641,13 @@ section {
 .destination .box-container .box .content a i {
   padding-right: 0.5rem;
 }
+
 .services {
   background: #fff;
   border-radius: 1rem;
   margin: 2rem 0;
 }
+
 .services .box-container {
   display: -ms-grid;
   display: grid;
@@ -674,11 +684,13 @@ section {
   color: #aaa;
   line-height: 2;
 }
+
 .gallery {
   background: #fff;
   border-radius: 1rem;
   margin: 2rem 0;
 }
+
 .gallery .box-container {
   columns: 3 25rem;
   column-gap: 1.5rem;
@@ -697,6 +709,7 @@ section {
   margin-bottom: 1rem;
   box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
 }
+
 .gallery .box-container .box:hover img {
   box-shadow: 0px 0px 10px 8px rgba(0, 0, 0, 0.4);
 }
@@ -788,11 +801,13 @@ section {
   color: #aaa;
   font-size: 1.5rem;
 }
+
 .contact {
   background: #fff;
   border-radius: 1rem;
   margin: 2rem 0;
 }
+
 .contact .row {
   display: flex;
   flex-wrap: wrap;
@@ -887,6 +902,7 @@ section {
 .footer .box-container .box a:hover i {
   padding-right: 2rem;
 }
+
 .footer .credit {
   text-align: center;
   margin-top: 2.5rem;
@@ -908,6 +924,7 @@ section {
     width: 100%;
     overflow-y: hidden;
   }
+
   html {
     font-size: 55%;
   }
@@ -919,27 +936,34 @@ section {
     width: 100%;
     overflow-y: hidden;
   }
+
   header {
     padding: 2rem;
   }
+
   section {
     padding: 2rem;
   }
+
   .home .box {
     padding: 2rem;
     justify-content: center;
     background-position: right !important;
   }
+
   .home .box.second {
     justify-content: center;
     background-position: left !important;
   }
+
   .home .box .content {
     text-align: center;
   }
+
   .home .box .content span {
     font-size: 3rem;
   }
+
   .home .box .content h3 {
     font-size: 4rem;
   }
@@ -951,19 +975,24 @@ section {
     width: 100%;
     overflow-y: hidden;
   }
+
   .header .logo {
     font-size: 1.5rem;
   }
+
   .header .icons {
     margin-left: 1rem;
   }
+
   .header .icons a {
     margin-left: 0rem;
     font-size: 1.5rem;
   }
+
   .header #menu-btn {
     display: inline-block;
   }
+
   .header .navbar {
     position: fixed;
     top: 0;
@@ -977,20 +1006,24 @@ section {
     align-items: center;
     justify-content: center;
   }
+
   .header .navbar.active {
     left: 0;
     box-shadow: 0 0 0 100vw rgba(0, 0, 0, 0.8);
   }
+
   .header .navbar a {
     margin: 1rem 0;
     font-size: 3rem;
   }
+
   .header .navbar #nav-close {
     display: block;
     position: absolute;
     top: 1rem;
     right: 2rem;
   }
+
   .swiper-button-next::after,
   .swiper-button-prev::after {
     display: none;
@@ -1003,22 +1036,28 @@ section {
     width: 100%;
     overflow-y: hidden;
   }
+
   header .navbar {
     width: 100vw;
   }
+
   .logo {
     font-size: 10px;
   }
+
   .heading span {
     font-size: 1rem;
   }
+
   .contact .row form .inputBox input {
     width: 100%;
   }
+
   #menu-bar {
     display: initial;
     font-size: 2vh;
   }
+
   header .navbar {
     position: absolute;
     display: inline-block;
@@ -1027,9 +1066,11 @@ section {
     border-top: 0.1rem solid rgba(255, 255, 255, 0.2);
     clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
   }
+
   header .navbar.active {
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
   }
+
   header .navbar li {
     height: 2vh;
     width: 30vw;
@@ -1040,19 +1081,24 @@ section {
     color: #fff;
     background: linear-gradient(aqua, rgba(255, 255, 255, 0));
   }
+
   .login-form-container .form {
     height: 70vh;
     width: 70vw;
   }
+
   .login-form-container .form .submit-btn {
     width: 50vw;
   }
+
   .form #login {
     left: 20px;
   }
+
   .form #register {
     left: 380px;
   }
+
   .packages .box-container {
     width: 100%;
     display: flex;
@@ -1188,13 +1234,16 @@ Newsletter Media Query
   .newsletter {
     padding: 6rem 4rem;
   }
+
   .newsletter__content {
     flex-direction: column;
     align-items: center;
   }
+
   .newsletter__email {
     width: 45rem;
   }
+
   .newsletter__data {
     margin-bottom: 2rem;
   }
@@ -1206,6 +1255,7 @@ Newsletter Media Query
     justify-content: center;
     text-align: center;
   }
+
   .newsletter__email {
     width: 45rem;
     display: block;
@@ -1218,12 +1268,15 @@ Newsletter Media Query
     width: 23rem;
     font-size: 1.2rem;
   }
+
   .newsletter__data h3 {
     font-size: 1.6rem;
   }
+
   .newsletter__data p {
     font-size: 1rem;
   }
+
   .newsletter__link:link,
   .newsletter__link:visited {
     padding: 1.2rem 2rem;

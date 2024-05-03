@@ -1,18 +1,24 @@
 <?php
 session_start();
+include "../config.php"; // Include the config file to access database configuration
+
 $name = " ";
 $info = "";
 if (!isset($_SESSION['id'])) {
-  $name = '';
+    $name = '';
 } else {
-  $id = $_SESSION['id'];
-  $al = mysqli_connect("localhost", "root", "", "banjara tour and travel");
-  $a = mysqli_query($al, "SELECT * FROM customers WHERE id='$id'");
-  $b = mysqli_fetch_array($a);
-  $name = $b['name'];
-  $email=$b['email'];
+    $id = $_SESSION['id'];
+    $al = mysqli_connect($db_host, $db_username, $db_password, $db_name);
+    if (!$al) {
+        die("Connection failed: " . mysqli_connect_error());
+    }
+    $a = mysqli_query($al, "SELECT * FROM customers WHERE id='$id'");
+    $b = mysqli_fetch_array($a);
+    $name = $b['name'];
+    $email = $b['email'];
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 

@@ -1,44 +1,45 @@
 <?php
-$info='';
+session_start();
+$info = '';
 if (isset($_POST['sub'])) {
-    $al = mysqli_connect("localhost", "root", "", "banjara tour and travel");
+    include "../config.php"; // Include the config file to establish database connection
+
     $email = $_POST['email'];
-	$a = mysqli_query($al, "SELECT * FROM customers WHERE email='$email'");
-	$b = mysqli_fetch_array($a);
-	$name = $b['name'];
-	$pass = $b['password'];
-	$old = $_POST['old'];
-	$p1 = $_POST['p1'];
-	$p2 = $_POST['p2'];
-	if ($_POST['old'] == NULL || $_POST['p1'] == NULL || $_POST['p2'] == NULL) {
-		echo "<script> alert('Form connat be null');
-				window.location.href = 'changePassword.php';
-			  </script>";
-	} else {
-		if ($old != $pass) {
-			echo "<script> alert('Incorrect Old Password');
-				window.location.href = 'changePassword.php';
-			  </script>";
-		} elseif ($p1 != $p2) {
-			echo "<script> alert('Confirm Password is not same');
-				window.location.href = 'changePassword.php';
-			  </script>";
-		} else {
-            if (mysqli_query($al, "UPDATE customers SET password ='$p2' WHERE email='$email'")) {
+    $a = mysqli_query($conn, "SELECT * FROM customers WHERE email='$email'");
+    $b = mysqli_fetch_array($a);
+    $name = $b['name'];
+    $pass = $b['password'];
+    $old = $_POST['old'];
+    $p1 = $_POST['p1'];
+    $p2 = $_POST['p2'];
+    if ($_POST['old'] == NULL || $_POST['p1'] == NULL || $_POST['p2'] == NULL) {
+        echo "<script> alert('Form cannot be null');
+                window.location.href = 'changePassword.php';
+              </script>";
+    } else {
+        if ($old != $pass) {
+            echo "<script> alert('Incorrect Old Password');
+                window.location.href = 'changePassword.php';
+              </script>";
+        } elseif ($p1 != $p2) {
+            echo "<script> alert('Confirm Password is not same');
+                window.location.href = 'changePassword.php';
+              </script>";
+        } else {
+            if (mysqli_query($conn, "UPDATE customers SET password ='$p2' WHERE email='$email'")) {
                 echo "<script> alert('Password is changed Successfully');
-				window.location.href = '../index.php';
-			  </script>";
-            }else {
+                window.location.href = '../index.php';
+              </script>";
+            } else {
                 echo "<script> alert('Something went wrong..');
-				window.location.href = 'changePassword.php';
-			  </script>";
+                window.location.href = 'changePassword.php';
+              </script>";
             }
-			// mysqli_query($al, "UPDATE customers SET password ='$p2' WHERE email='$email'");
-			
-		}
-	}
+        }
+    }
 }
 ?>
+
 
 <html>
 

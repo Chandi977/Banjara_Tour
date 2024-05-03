@@ -1,30 +1,46 @@
 <?php
-// include("setting.php");
 $info = "";
+
+// Check if form is submitted
 if (isset($_POST['sub'])) {
-	$n = $_POST['name'];
-	$e = $_POST['email'];
-	$c = $_POST['contact'];
-	$p = $_POST['pass'];
-	$al = mysqli_connect("localhost", "root", "", "banjara tour and travel");
-	if ($n != NULL && $e != NULL && $c != NULL && $_POST['pass'] != NULL) {
-		$sql = mysqli_query($al, "INSERT INTO customers(name,email,contact,password) VALUES('$n','$e','$c','$p')");
-		if ($sql) {
-			echo '<script>confirm("Account Created Successfully.  Welcome '.$n.'"); window.location.href = "../index.php";</script>';
-		} else {
-			echo '<script>confirm("Email Id is already taken.");</script>';
-			// $info = "Email ID Already Exists";
-			header("location:../index.php");
-		}
-	} else {
-		echo "
-		<script>confirm('Email or Password is required and not be empty.'); 
-			window.location.href = '../index.php';
-		</script>";
-		// header("location:../404.html");
-	}
+    // Extract form data
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $contact = $_POST['contact'];
+    $password = $_POST['pass'];
+    
+    // Validate form inputs
+    if (!empty($name) && !empty($email) && !empty($contact) && !empty($password)) {
+        // Establish database connection
+        $conn = mysqli_connect("localhost", "root", "", "banjara tour and travel");
+        
+        // Check if connection is successful
+        if ($conn) {
+            // Prepare and execute SQL query
+            $query = "INSERT INTO customers (name, email, contact, password) VALUES ('$name', '$email', '$contact', '$password')";
+            $result = mysqli_query($conn, $query);
+            
+            // Check if query execution was successful
+            if ($result) {
+                // Redirect to index.php with success message
+                echo '<script>alert("Account Created Successfully. Welcome '.$name.'"); window.location.href = "../index.php";</script>';
+            } else {
+                // Display error message if query execution failed
+                echo '<script>alert("Email Id is already taken.");</script>';
+                header("location:../index.php");
+            }
+        } else {
+            // Display error message if database connection failed
+            echo '<script>alert("Failed to connect to the database.");</script>';
+            header("location:../404.html");
+        }
+    } else {
+        // Display error message if any form field is empty
+        echo '<script>alert("Email or Password is required and cannot be empty."); window.location.href = "../index.php";</script>';
+    }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">

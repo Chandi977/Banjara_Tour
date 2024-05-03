@@ -1,18 +1,20 @@
 <?php
 session_start();
-$name = " ";
+$name = "";
 $info = "";
+
+include "config.php"; // Include the config file to establish database connection
+
 if (!isset($_SESSION['id'])) {
-  $name = '';
+    $name = '';
 } else {
-  $id = $_SESSION['id'];
-//   $uname=$_SESSION['uname'];
-  $al = mysqli_connect("localhost", "root", "", "banjara tour and travel");
-  $a = mysqli_query($al, "SELECT * FROM customers WHERE id='$id'");
-  $b = mysqli_fetch_array($a);
-  $name = $b['name'];
+    $id = $_SESSION['id'];
+    $a = mysqli_query($conn, "SELECT * FROM customers WHERE id='$id'");
+    $b = mysqli_fetch_array($a);
+    $name = $b['name'];
 }
 ?>
+
 
 
 <!DOCTYPE html>
@@ -179,25 +181,25 @@ if (!isset($_SESSION['id'])) {
         <div class="box-container">
 
             <div class="box" data-aos="fade-up" data-aos-delay="150">
-                <img src="images/caving.jpg" alt="">
+                <img src="images/caving.jpg" alt="#" loading="lazy">
                 <h3>Caving</h3>
                 <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laborum, id.</p>
             </div>
 
             <div class="box" data-aos="fade-up" data-aos-delay="300">
-                <img src="images/Rafting.jpg" alt="">
+                <img src="images/Rafting.jpg" alt="#" loading="lazy">
                 <h3>rafting</h3>
                 <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laborum, id.</p>
             </div>
 
             <div class="box" data-aos="fade-up" data-aos-delay="450">
-                <img src="images/Skydiving.jpg" alt="">
+                <img src="images/Skydiving.jpg" alt="#" loading="lazy">
                 <h3>Skydiving</h3>
                 <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laborum, id.</p>
             </div>
 
             <div class="box" data-aos="fade-up" data-aos-delay="600">
-                <img src="images/HotAir.jpg" alt="">
+                <img src="images/HotAir.jpg" alt="#" loading="lazy">
                 <h3>Hot Air Ballooning</h3>
                 <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laborum, id.</p>
             </div>
@@ -217,7 +219,7 @@ if (!isset($_SESSION['id'])) {
 
             <div class="box" data-aos="fade-up" data-aos-delay="150">
                 <div class="image">
-                    <img src="admin/data/mumbai.png" alt="">
+                    <img src="admin/data/mumbai.png" alt="#" loading="lazy">
                 </div>
                 <div class="content">
                     <h3>Mumbai</h3>
@@ -228,7 +230,7 @@ if (!isset($_SESSION['id'])) {
 
             <div class="box" data-aos="fade-up" data-aos-delay="300">
                 <div class="image">
-                    <img src="admin/data/manali.png" alt="">
+                    <img src="admin/data/manali.png" alt="#" loading="lazy">
                 </div>
                 <div class="content">
                     <h3>Manali</h3>
@@ -239,7 +241,7 @@ if (!isset($_SESSION['id'])) {
 
             <div class="box" data-aos="fade-up" data-aos-delay="450">
                 <div class="image">
-                    <img src="admin/data/ladakh.png" alt="">
+                    <img src="admin/data/ladakh.png" alt="#" loading="lazy">
                 </div>
                 <div class="content">
                     <h3>Ladakh</h3>
@@ -250,7 +252,7 @@ if (!isset($_SESSION['id'])) {
 
             <div class="box" data-aos="fade-up" data-aos-delay="600">
                 <div class="image">
-                    <img src="admin/data/kolkata.png" alt="">
+                    <img src="admin/data/kolkata.png" alt="#" loading="lazy">
                 </div>
                 <div class="content">
                     <h3>Kolkata</h3>
@@ -336,49 +338,49 @@ if (!isset($_SESSION['id'])) {
             </div>
 
             <div class="box" data-aos="zoom-in-up" data-aos-delay="300">
-                <img src="images/keral.jpg" alt="">
+                <img src="images/keral.jpg" alt="#" loading="lazy">
                 <span>travel spot</span>
                 <h3>Keral</h3>
             </div>
 
             <div class="box" data-aos="zoom-in-up" data-aos-delay="450">
-                <img src="images/rajasthan.jpg" alt="">
+                <img src="images/rajasthan.jpg" alt="#" loading="lazy">
                 <span>travel spot</span>
                 <h3>Rajasthan</h3>
             </div>
 
             <div class="box" data-aos="zoom-in-up" data-aos-delay="150">
-                <img src="images/tamilnadu.jpg" alt="">
+                <img src="images/tamilnadu.jpg" alt="#" loading="lazy">
                 <span>travel spot</span>
                 <h3>Tamil Nadu</h3>
             </div>
 
             <div class="box" data-aos="zoom-in-up" data-aos-delay="300">
-                <img src="images/telangana.jpg" alt="">
+                <img src="images/telangana.jpg" alt="#" loading="lazy">
                 <span>travel spot</span>
                 <h3>Telangana</h3>
             </div>
 
             <div class="box" data-aos="zoom-in-up" data-aos-delay="450">
-                <img src="images/mumbai.jpg" alt="">
+                <img src="images/mumbai.jpg" alt="#" loading="lazy">
                 <span>travel spot</span>
                 <h3>mumbai</h3>
             </div>
 
             <div class="box" data-aos="zoom-in-up" data-aos-delay="150">
-                <img src="images/himalaya.jpg" alt="">
+                <img src="images/himalaya.jpg" alt="#" loading="lazy">
                 <span>travel spot</span>
                 <h3>Himalaya</h3>
             </div>
 
             <div class="box" data-aos="zoom-in-up" data-aos-delay="300">
-                <img src="images/kashmir.jpg" alt="">
+                <img src="images/kashmir.jpg" alt="#" loading="lazy">
                 <span>travel spot</span>
                 <h3>Kashmir</h3>
             </div>
 
             <div class="box" data-aos="zoom-in-up" data-aos-delay="450">
-                <img src="images/kedarnath.jpg" alt="">
+                <img src="images/kedarnath.jpg" alt="#" loading="lazy">
                 <span>travel spot</span>
                 <h3>Uttrakhand</h3>
             </div>
@@ -405,7 +407,7 @@ if (!isset($_SESSION['id'])) {
             <div class="box">
                 <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quia, ratione.</p>
                 <div class="user">
-                    <img src="images/pic1.png" alt="">
+                    <img src="images/pic1.png" alt="#" loading="lazy">
                     <div class="info">
                         <h3>Aditya Singh</h3>
                         <span>designer</span>
@@ -415,7 +417,7 @@ if (!isset($_SESSION['id'])) {
             <div class="box">
                 <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quia, ratione.</p>
                 <div class="user">
-                    <img src="images/pic2.png" alt="">
+                    <img src="images/pic2.png" alt="#" loading="lazy">
                     <div class="info">
                         <h3>Asish Sharma</h3>
                         <span>designer</span>
@@ -425,7 +427,7 @@ if (!isset($_SESSION['id'])) {
             <div class="box">
                 <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quia, ratione.</p>
                 <div class="user">
-                    <img src="images/pic3.png" alt="">
+                    <img src="images/pic3.png" alt="#" loading="lazy">
                     <div class="info">
                         <h3>Dilip Kumar</h3>
                         <span>designer</span>
@@ -435,7 +437,7 @@ if (!isset($_SESSION['id'])) {
             <div class="box">
                 <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quia, ratione.</p>
                 <div class="user">
-                    <img src="images/pic4.png" alt="">
+                    <img src="images/pic4.png" alt="#" loading="lazy">
                     <div class="info">
                         <h3>Rohit Kumar</h3>
                         <span>designer</span>
@@ -453,12 +455,12 @@ if (!isset($_SESSION['id'])) {
 
         <div class="swiper-container brand-slider">
             <div class="swiper-wrapper">
-                <div class="swiper-slide"><img src="images/1.png" alt=""></div>
-                <div class="swiper-slide"><img src="images/2.png" alt=""></div>
-                <div class="swiper-slide"><img src="images/3.png" alt=""></div>
-                <div class="swiper-slide"><img src="images/4.png" alt=""></div>
-                <div class="swiper-slide"><img src="images/5.png" alt=""></div>
-                <div class="swiper-slide"><img src="images/6.png" alt=""></div>
+                <div class="swiper-slide"><img src="images/1.png" alt="#" loading="lazy"></div>
+                <div class="swiper-slide"><img src="images/2.png" alt="#" loading="lazy"></div>
+                <div class="swiper-slide"><img src="images/3.png" alt="#" loading="lazy"></div>
+                <div class="swiper-slide"><img src="images/4.png" alt="#" loading="lazy"></div>
+                <div class="swiper-slide"><img src="images/5.png" alt="#" loading="lazy"></div>
+                <div class="swiper-slide"><img src="images/6.png" alt="#" loading="lazy"></div>
             </div>
         </div>
 
@@ -516,8 +518,8 @@ if (!isset($_SESSION['id'])) {
 
     </section>
 
-
-    <script src="js/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <!-- <script src="js/aos.js"></script> -->
     <script type="module" src="js/script.js"></script>
 
 
@@ -543,8 +545,10 @@ if (!isset($_SESSION['id'])) {
         offset: 150,
     });
     </script>
-    <script src="js/swiper-bundle.min.js"></script>
-    <script src="js/glide.min.js"></script>
+    <!-- <script src="js/swiper-bundle.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/6.8.4/swiper-bundle.min.js"></script>
+    <!-- <script src="js/glide.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Glide.js/3.4.1/glide.min.js"></script>
     <!-- Animate On Scroll -->
 
 

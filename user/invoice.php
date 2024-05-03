@@ -1,5 +1,6 @@
-<?php require 'helpers/setting.php';?>
-<?php
+<?php 
+require 'helpers/setting.php';
+include '../config.php';
 $id = $_GET['id'];
 $al = mysqli_connect("localhost", "root", "", "banjara tour and travel");
 
