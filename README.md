@@ -1,9 +1,64 @@
-﻿# The-Banjara-Tours-Travels
+﻿# Banjara Tours and Travels Management System
 
-- This is my first web based project and it is coded in HTML, CSS, SCSS, JAVASCRIPT, JQUERY, PHP, SQL.
-- Frame work i have used is Bootstrap, Fontawesome etc.
-- It has it's own Dashboard, where admin can check how much user is registered, how much customer are booking for packages, customer can get exciting packages handeled directly from admin Dashboard.
-- This page can be handeled from Dashboard.
+The Banjara Tours and Travels Management System is a web application designed to streamline the process of managing tours and travel services. It provides users with a platform to browse, book, and manage their travel itineraries effectively.
+
+## Key Features
+
+- User Registration and Authentication
+- Tour Catalog
+- Booking System
+- Admin Dashboard
+- Responsive Design
+
+## Technologies Used
+
+- Frontend: HTML, CSS, JavaScript
+- Backend: PHP
+- Database: MySQL
+
+## Installation
+
+1. Clone the repository:
+
+git clone <https://github.com/Chandi977/Banjara_Tour.git>
+
+2. Set up the database:
+   - Import the SQL dump file (`banjara_tour_and_travel.sql`) into your MySQL database.
+
+3. Configure the database connection:
+   - Open the `config.php` file located in the `backend` directory.
+   - Update the database hostname, username, password, and database name.
+
+4. Run the application:
+   - Start a local server (e.g., Apache) to serve the PHP files.
+   - Access the application through a web browser.
+
+## Usage
+
+1. Register for a user account or log in if you already have an account.
+2. Browse through the tour catalog to explore available tours.
+3. Select your preferred tour, specify travel dates, and complete the booking process.
+4. Admins can access the admin dashboard to manage tours, bookings, and user accounts.
+
+## Future Enhancements
+
+- Payment Integration
+- Advanced Search Functionality
+- Reviews and Ratings System
+- Notification Features
+
+## Contributors
+
+- [Your Name](https://github.com/Chandi977)
+- [Contributor 1](https://github.com/sujeetkumar12)
+- [Contributor 2](https://)
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
+
+## Screen Shots of the page.
+
 
 ![Screenshot (42)](https://user-images.githubusercontent.com/55855799/144728233-1e632f56-e61e-42b1-980b-4ba3b0ba9465.png)
 -
@@ -56,3 +111,4 @@
 ![Screenshot (39)](https://user-images.githubusercontent.com/55855799/143493894-1309d409-4082-4a6c-9170-6e7d155b7258.png)
 - 
  ![Screenshot (40)](https://user-images.githubusercontent.com/55855799/143493896-b60b4d64-86f5-462b-97fa-76deb967bee5.png)
+
