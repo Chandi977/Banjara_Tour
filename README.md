@@ -20,7 +20,7 @@ The Banjara Tours and Travels Management System is a web application designed to
 
 1. Clone the repository:
 
-git clone <https://github.com/Chandi977/Banjara_Tour.git>
+```git clone <https://github.com/Chandi977/Banjara_Tour.git>```
 
 2. Set up the database:
    - Import the SQL dump file (`banjara_tour_and_travel.sql`) into your MySQL database.
@@ -49,13 +49,13 @@ git clone <https://github.com/Chandi977/Banjara_Tour.git>
 
 ## Contributors
 
-- [Your Name](https://github.com/Chandi977)
-- [Contributor 1](https://github.com/sujeetkumar12)
-- [Contributor 2](https://)
+- [Chandi Charan Mahato](https://github.com/Chandi977)
+- [Sujeet Kumar](https://github.com/sujeetkumar12)
+- [Rohit Kumar](https://)
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE).
+No Licence.
 
 ## Screen Shots of the page.
 
