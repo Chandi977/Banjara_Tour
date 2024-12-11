@@ -438,7 +438,7 @@ $data = mysqli_fetch_array($datafrom);
                     <div class="hero-container">
                         <div class="main-container">
                             <div class="poster-container">
-                                <a href="#"><img src="../images/sujeet.jpeg" class="poster" /></a>
+                                <a href="#"><img src="../images/anurag.jpeg" class="poster" /></a>
                             </div>
                             <div class="ticket-container">
                                 <div class="ticket__content">
@@ -446,15 +446,15 @@ $data = mysqli_fetch_array($datafrom);
                                     <a href="#"> <i class="fab fa-github"></i></a>
                                     <a href="#"><i class="fab fa-linkedin-in"></i></a>
                                     <a href="#"><i class="fab fa-twitter"></i></a>
-                                    <h4 class="ticket__movie-title">Sujeet Kumar</h4>
+                                    <h4 class="ticket__movie-title">Anurag Varshney</h4>
                                     <p class="ticket__movie-slogan">
                                         Web/Software Developers
                                     </p>
                                     <ul>
-                                        <li>University : Netaji Subhas University,Jamshedpur</li>
-                                        <li>University Roll : 1903060</li>
-                                        <li>Stream : BCA</li>
-                                        <li>Session : 2019-22</li>
+                                        <li>University : Galgotias College of Engineering and Technology</li>
+                                        <li>University Roll : 2300970140044</li>
+                                        <li>Stream : MCA</li>
+                                        <li>Session : 2023-25</li>
                                     </ul>
                                 </div>
                             </div>
@@ -476,65 +476,42 @@ $data = mysqli_fetch_array($datafrom);
                                     <h4 class="ticket__movie-title">Chandi Charan Mahato</h4>
                                     <p class="ticket__movie-slogan">Web/Software Developers</p>
                                     <ul>
-                                        <li>University : Netaji Subhas University,Jamshedpur</li>
-                                        <li>University Roll : 1903016</li>
-                                        <li>Stream : BCA</li>
-                                        <li>Session : 2019-22</li>
+                                        <li>University : Galgotias College of Engineering and Technology</li>
+                                        <li>University Roll : 2300970140053</li>
+                                        <li>Stream : MCA</li>
+                                        <li>Session : 2023-25</li>
                                     </ul>
 
                                 </div>
                             </div>
                         </div>
-                        <div class="main-container">
-                            <div class="poster-container">
-                                <a href="#"><img src="../images/rohit.png" class="poster" /></a>
-                            </div>
-                            <div class="social-icons">
 
-                            </div>
-                            <div class="ticket-container">
-                                <div class="ticket__content">
-                                    <a href="#"><i class="fab fa-instagram"></i></a>
-                                    <a href="#"> <i class="fab fa-github"></i></a>
-                                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                                    <a href="#"><i class="fab fa-twitter"></i></a>
-                                    <h4 class="ticket__movie-title">Rohit Kumar</h4>
-                                    <p class="ticket__movie-slogan">Web/Software Developers</p>
-                                    <ul>
-                                        <li>University : Netaji Subhas University,Jamshedpur</li>
-                                        <li>University Roll : 1903051</li>
-                                        <li>Stream : BCA</li>
-                                        <li>Session : 2019-22</li>
-                                    </ul>
-
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <div class="password" id="password" data-view-active="false">
-                <div class="container">
-                    <div class="title">
-                        <h2>Change Password</h2>
-                    </div>
-                    <div class="box">
-                        <form action="changePasswordAdmin.php" class="form" method="POST">
-                            <?php echo $info; ?>
-                            <input type="password" name="old" size="25" class="fields" placeholder="Enter Old Password"
-                                required="required">
-                            <input type="password" name="p1" size="25" class="fields" placeholder="Enter New Password"
-                                required="required">
-                            <input type="password" name="p2" size="25" class="fields" placeholder="Re-Type New Password"
-                                required="required">
-                            <input type="submit" name="sub" value="Change Password" class="fields">
-                        </form>
-                    </div>
-                    <!-- <button class="btn btn-primary">Logout</button> -->
-                    <a href="logoutadmin.php"><button class="btn btn-primary">Logout</button></a>
+        <div class="password" id="password" data-view-active="false">
+            <div class="container">
+                <div class="title">
+                    <h2>Change Password</h2>
                 </div>
+                <div class="box">
+                    <form action="changePasswordAdmin.php" class="form" method="POST">
+                        <?php echo $info; ?>
+                        <input type="password" name="old" size="25" class="fields" placeholder="Enter Old Password"
+                            required="required">
+                        <input type="password" name="p1" size="25" class="fields" placeholder="Enter New Password"
+                            required="required">
+                        <input type="password" name="p2" size="25" class="fields" placeholder="Re-Type New Password"
+                            required="required">
+                        <input type="submit" name="sub" value="Change Password" class="fields">
+                    </form>
+                </div>
+                <!-- <button class="btn btn-primary">Logout</button> -->
+                <a href="logoutadmin.php"><button class="btn btn-primary">Logout</button></a>
             </div>
+        </div>
         </div>
     </main>
     <script src="js/script.js"></script>

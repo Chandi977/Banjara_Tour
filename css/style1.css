@@ -802,6 +802,14 @@ section {
   font-size: 1.5rem;
 }
 
+.scrollable-content {
+  max-height: 150px;
+  /* Set the height for the scrollable section */
+  overflow-y: auto;
+  /* Enables vertical scroll */
+}
+
+
 .contact {
   background: #fff;
   border-radius: 1rem;

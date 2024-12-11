@@ -56,7 +56,8 @@
                                             </div>
                                             <div class="prop-info">
                                                 <h4 class="listing_title_book">
-                                                    Hotel Green Resort vally, Shimla
+                                                    <?php echo $y['hotel'];
+                                                    ?>
                                                 </h4>
 
                                                 <div class="user_dashboard_listed">
@@ -86,18 +87,21 @@
                                                 </div>
                                             </div>
                                             <div class="info-container_booking">
-                                                <?php  if ($y['status']) {
+                                                <?php  
+                                                if ($y['status']) {
                                                     $id = $y['id'];
                                                     echo '<a href="invoice.php?id='.$id.'" class="booking-detail">View Detail</a>';
                                                     echo '<span class="booking-success">Confirmed</span>';
                                                     echo '<span class="booking-pending">Cancel Booking</span>';
-                                                }
-                                                else {
+                                                }                                           
+                                                else{
+                                                    // For pending items, show the "Pending Payment" link and delete button
                                                     echo '<a href="payment-methode.php?cartid='.$y['id'].'" class="booking-pending">Pending Payment</a>';
-                                                }?>
-
-
+                                                    echo '<a href="delete_cart.php?id='.$y['id'].'" class="booking-pending">Delete</a>';
+                                                }                                           
+                                                ?>
                                             </div>
+
                                         </div>
 
                                     </div>

@@ -13,3 +13,5 @@
 <!-- <link id="jssDefault" rel="stylesheet" href="assets/css/skins/default.css"> -->
 <link rel="stylesheet" href="../css/style1.css">
 <link href="assets/css/responsiveness.css" rel="stylesheet">
+<!-- SweetAlert CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">

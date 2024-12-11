@@ -1,4 +1,6 @@
 <?php
+include '../config.php'; // Include configuration file for common data
+
 $info = "";
 
 // Check if form is submitted
@@ -8,22 +10,23 @@ if (isset($_POST['sub'])) {
     $email = $_POST['email'];
     $contact = $_POST['contact'];
     $password = $_POST['pass'];
-    
+
     // Validate form inputs
     if (!empty($name) && !empty($email) && !empty($contact) && !empty($password)) {
-        // Establish database connection
-        $conn = mysqli_connect("localhost", "root", "", "banjara tour and travel");
-        
         // Check if connection is successful
         if ($conn) {
             // Prepare and execute SQL query
             $query = "INSERT INTO customers (name, email, contact, password) VALUES ('$name', '$email', '$contact', '$password')";
             $result = mysqli_query($conn, $query);
-            
+
             // Check if query execution was successful
             if ($result) {
                 // Redirect to index.php with success message
-                echo '<script>alert("Account Created Successfully. Welcome '.$name.'"); window.location.href = "../index.php";</script>';
+                $user_id = mysqli_insert_id($conn);
+                 // Store user data in session
+                 $_SESSION['id'] = $user_id;
+                 $_SESSION['name'] = $name;
+                echo '<script>alert("Account Created Successfully. Welcome ' . $name . '"); window.location.href = "../index.php";</script>';
             } else {
                 // Display error message if query execution failed
                 echo '<script>alert("Email Id is already taken.");</script>';
@@ -40,7 +43,6 @@ if (isset($_POST['sub'])) {
     }
 }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">

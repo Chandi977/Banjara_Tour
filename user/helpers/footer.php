@@ -27,7 +27,7 @@
                 <a href="#"> <i class="fas fa-phone"></i> +91 1234567890 </a>
                 <a href="#"> <i class="fas fa-phone"></i> +91 1234567890 </a>
                 <a href="#"> <i class="fas fa-envelope"></i> banjaraAdmin@gmail.com </a>
-                <a href="#"> <i class="fas fa-map"></i> Adityapur, Jamshedpur, Jharkhand </a>
+                <a href="#"> <i class="fas fa-map"></i> Alpha 2, Greater Noida, Uttar Pradesh </a>
             </div>
 
             <div class="box" style="background:transparent;  box-shadow:none;">
@@ -40,9 +40,11 @@
             </div>
 
         </div>
-        <div class="credit">created by <span>Chandi, Sujeet, Rohit</span> | all rights reserved!</div>
+        <div class="credit">created by <span>Chandi, Anurag</span> | all rights reserved!</div>
 
     </div>
 
 
 </section>
+<!-- SweetAlert JS -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>

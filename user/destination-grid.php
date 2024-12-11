@@ -8,15 +8,30 @@ if (!isset($_SESSION['id'])) {
     $name = '';
 } else {
     $id = $_SESSION['id'];
-    $al = mysqli_connect($db_host, $db_username, $db_password, $db_name);
-    if (!$al) {
-        die("Connection failed: " . mysqli_connect_error());
-    }
-    $a = mysqli_query($al, "SELECT * FROM customers WHERE id='$id'");
+    
+    $a = mysqli_query($conn, "SELECT * FROM customers WHERE id='$id'");
     $b = mysqli_fetch_array($a);
     $name = $b['name'];
     $email = $b['email'];
 }
+
+// Get the sorting option from URL parameter
+$sort_order = isset($_GET['sort']) ? $_GET['sort'] : 'asc'; // Default is 'asc'
+
+// Determine the query for sorting
+if ($sort_order == 'asc') {
+    $sort_query = 'ORDER BY name ASC'; // Sorting by name ascending
+} elseif ($sort_order == 'desc') {
+    $sort_query = 'ORDER BY name DESC'; // Sorting by name descending
+} elseif ($sort_order == 'date') {
+    $sort_query = 'ORDER BY id DESC'; // Sorting by id (assuming id is auto-increment and reflects creation order)
+}
+
+// Connect to database
+$al = mysqli_connect("localhost", "root", "", "banjara tour and travel");
+
+// Modify the query with sorting options
+$x = mysqli_query($al, "SELECT * FROM holiday $sort_query");
 ?>
 
 <!DOCTYPE html>
@@ -25,7 +40,6 @@ if (!isset($_SESSION['id'])) {
 <head>
     <?php include 'helpers/head.php';?>
     <title>Destination Grid</title>
-
 </head>
 
 <body>
@@ -58,18 +72,24 @@ if (!isset($_SESSION['id'])) {
 
                     <div class="col-sm-9 text-right">
 
+                        <!-- Sorting Dropdown -->
                         <div class="btn-group mr-lg-2">
                             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
                                 Short By
                             </button>
                             <div class="dropdown-menu pull-right animated flipInX">
-                                <a href="#">Accending</a>
-                                <a href="#">Decending</a>
-                                <a href="#">By Date</a>
+                                <a href="?sort=asc"
+                                    <?php echo (isset($_GET['sort']) && $_GET['sort'] == 'asc') ? 'class="active"' : ''; ?>>Ascending</a>
+                                <a href="?sort=desc"
+                                    <?php echo (isset($_GET['sort']) && $_GET['sort'] == 'desc') ? 'class="active"' : ''; ?>>Descending</a>
+                                <a href="?sort=date"
+                                    <?php echo (isset($_GET['sort']) && $_GET['sort'] == 'date') ? 'class="active"' : ''; ?>>By
+                                    Date</a>
                             </div>
                         </div>
 
+                        <!-- View Icons -->
                         <div class="btn-group">
                             <a href="destination-grid.php" class="btn btn-default tooltips">
                                 <i class="ti-flix ti-layout-grid2"></i>
@@ -89,9 +109,7 @@ if (!isset($_SESSION['id'])) {
             <div class="row">
                 <!-- Single Destination -->
                 <?php
-                    $al = mysqli_connect("localhost", "root", "", "banjara tour and travel");
-                    $x = mysqli_query($al, "SELECT * FROM holiday");
-                    while ($y = mysqli_fetch_array($x)) {
+                while ($y = mysqli_fetch_array($x)) {
                 ?>
                 <div class="col-md-4 col-sm-6 1" id="1" data-view-active="true">
                     <article class="destination-box style-1">
@@ -120,7 +138,7 @@ if (!isset($_SESSION['id'])) {
                                 for ($star = $y['star']; $star >= 1; $star--) {
                                     echo '<i class="fa fa-star"></i>';
                                 }
-                              
+
                                 if (is_float($star)) {
                                     echo '<i class="fa fa-star-half"></i>';
                                 }
@@ -154,12 +172,10 @@ if (!isset($_SESSION['id'])) {
     </section>
     <!-- =========== End All Destination In Grid View =================== -->
 
-
     <!-- ================= footer start ========================= -->
     <?php include 'helpers/footer.php';?>
     <!-- ================= footer End ========================= -->
     <!-- End Sign Up Window -->
-
 
     <!-- =================== START JAVASCRIPT ================== -->
     <?php include 'helpers/scripts.php';?>

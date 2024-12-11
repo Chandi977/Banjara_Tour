@@ -60,6 +60,7 @@ if (!isset($_SESSION['id'])) {
         <div class="icons">
             <a href="#" id="menu-btn" class="fas fa-bars"></a>
             <a href="#" id="search-btn" class="fas fa-search"></a>
+            <!-- <div class="search-bar-container"></div> -->
             <a href="#"> <?php echo $name ?></a>
             <?php
                 if (isset($_SESSION['email'])) {
