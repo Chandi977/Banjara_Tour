@@ -1,6 +1,6 @@
 <?php
 session_start();
-include "config.php"; // Include the config file to establish database connection
+include "../config.php"; // Include the config file to establish database connection
 
 $name = " ";
 $info = "";
@@ -10,8 +10,7 @@ if (!isset($_SESSION['id'])) {
   // header("location:../index.php");
 } else {
   $id = $_SESSION['id'];
-  $al = mysqli_connect($db_host, $db_username, $db_password, $db_name);
-  $a = mysqli_query($al, "SELECT * FROM customers WHERE id='$id'");
+  $a = mysqli_query($conn, "SELECT * FROM customers WHERE id='$id'");
   $b = mysqli_fetch_array($a);
   $name = $b['name'];
   $email = $b['email'];
@@ -77,9 +76,9 @@ if (!isset($_SESSION['id'])) {
     </section>
     <!-- ======================= End Detail Header ===================== -->
     <?php 
-        $al = mysqli_connect("localhost", "root", "", "banjara tour and travel");
+        $conn = mysqli_connect("localhost", "root", "", "banjara tour and travel");
         $id=$_GET['id'];
-        $x = mysqli_query($al,"SELECT * FROM holiday where id=$id");
+        $x = mysqli_query($conn,"SELECT * FROM holiday where id=$id");
         $data= mysqli_fetch_array($x);
     ?>
     <!-- ======================= Start Detail ===================== -->

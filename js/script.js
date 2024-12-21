@@ -40,9 +40,9 @@ const initializeSwiper = (selector, autoplayDelay) => {
       },
       breakpoints: {
         450: { slidesPerView: 1 },
-        768: { slidesPerView: 1 },
-        991: { slidesPerView: 1 },
-        1200: { slidesPerView: 1 },
+        768: { slidesPerView: 2 },
+        991: { slidesPerView: 3 },
+        1200: { slidesPerView: 4 },
       },
     });
   }

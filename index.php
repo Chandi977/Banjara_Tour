@@ -10,6 +10,10 @@ if (!isset($_SESSION['id'])) {
 } else {
     $id = $_SESSION['id'];
     $a = mysqli_query($conn, "SELECT * FROM customers WHERE id='$id'");
+    if (!$a) {
+        die("Database query failed: " . mysqli_error($conn));
+    }
+    
     $b = mysqli_fetch_array($a);
     $name = $b['name'];
 }
@@ -23,6 +27,9 @@ if (!isset($_SESSION['id'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Plan your adventures with The Banjara Tour & Travels, offering personalized experiences and destinations.">
+
     <title>The Banjara Tour &amp; Travels</title>
 
     <link rel="stylesheet" href="css/swiper-bundle.min.css" />
@@ -91,7 +98,7 @@ if (!isset($_SESSION['id'])) {
             <form action="user/custlogin.php" method="POST" id="login" class="input-group">
                 <!-- <h2>' . $info . '</h2> -->
                 <input type="text" class="input-field" name="email" placeholder="Enter your email">
-                <input type="text" class="input-field" name="pass" placeholder="Enter your password">
+                <input type="password" class="input-field" name="pass" placeholder="Enter your password">
                 <input type="submit" name="sub" value="login now" class="submit-btn btn">
                 <p>forget password? <a href="user/changePassword.php">click here</a></p>
             </form>
@@ -133,8 +140,8 @@ if (!isset($_SESSION['id'])) {
                         <div class="content">
                             <span>never stop</span>
                             <h3>exploring</h3>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit unde ex molestias soluta
-                                consequatur saepe aliquam, excepturi delectus consequuntur minus!</p>
+                            <p>Whether you're looking for hidden gems or well-known landmarks, our tours are designed to
+                                help you discover new destinations and make unforgettable memories.</p>
                             <a href="user\destination-grid.php" class="btn">get started</a>
                         </div>
                     </div>
@@ -145,8 +152,8 @@ if (!isset($_SESSION['id'])) {
                         <div class="content">
                             <span>make tour</span>
                             <h3>amazing</h3>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit unde ex molestias soluta
-                                consequatur saepe aliquam, excepturi delectus consequuntur minus!</p>
+                            <p>We bring you the most exciting travel experiences, combining adventure, culture, and
+                                relaxation to create the perfect tour for you.</p>
                             <a href="#" class="btn">get started</a>
                         </div>
                     </div>
@@ -157,8 +164,8 @@ if (!isset($_SESSION['id'])) {
                         <div class="content">
                             <span>explore the</span>
                             <h3>new world</h3>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit unde ex molestias soluta
-                                consequatur saepe aliquam, excepturi delectus consequuntur minus!</p>
+                            <p>Travel opens doors to new cultures, adventures, and unforgettable moments. Explore the
+                                world with us and see it in a whole new light.</p>
                             <a href="#" class="btn">get started</a>
                         </div>
                     </div>
@@ -173,39 +180,45 @@ if (!isset($_SESSION['id'])) {
 
     </section>
 
+
     <!-- home section ends -->
 
     <section class="category" id="category">
 
-        <h1 class="heading">adventure idea!</h1>
+        <h1 class="heading">Adventure Ideas!</h1>
 
         <div class="box-container">
 
             <div class="box" data-aos="fade-up" data-aos-delay="150">
                 <img src="images/caving.jpg" alt="#" loading="lazy">
                 <h3>Caving</h3>
-                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laborum, id.</p>
+                <p>Explore the depths of the earth with thrilling caving experiences. Discover hidden caves and enjoy a
+                    unique adventure surrounded by nature.</p>
             </div>
 
             <div class="box" data-aos="fade-up" data-aos-delay="300">
                 <img src="images/Rafting.jpg" alt="#" loading="lazy">
-                <h3>rafting</h3>
-                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laborum, id.</p>
+                <h3>Rafting</h3>
+                <p>Experience the excitement of rafting on fast-flowing rivers. Challenge yourself while navigating
+                    through rapids in beautiful scenic locations.</p>
             </div>
 
             <div class="box" data-aos="fade-up" data-aos-delay="450">
                 <img src="images/Skydiving.jpg" alt="#" loading="lazy">
                 <h3>Skydiving</h3>
-                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laborum, id.</p>
+                <p>Feel the rush of adrenaline as you jump from a plane and freefall before gliding safely back to the
+                    earth. Skydiving offers a bird’s eye view of the world below.</p>
             </div>
 
             <div class="box" data-aos="fade-up" data-aos-delay="600">
                 <img src="images/HotAir.jpg" alt="#" loading="lazy">
                 <h3>Hot Air Ballooning</h3>
-                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laborum, id.</p>
+                <p>Float peacefully above the landscape in a hot air balloon. Enjoy breathtaking views of valleys,
+                    mountains, and forests as you soar through the sky.</p>
             </div>
         </div>
     </section>
+
 
     <!-- packages section starts  -->
 
@@ -213,7 +226,7 @@ if (!isset($_SESSION['id'])) {
 
         <div class="heading">
             <span>Most Visited Places</span>
-            <h1>make yours destination</h1>
+            <h1>Make Your Destination</h1>
         </div>
 
         <div class="box-container">
@@ -224,7 +237,8 @@ if (!isset($_SESSION['id'])) {
                 </div>
                 <div class="content">
                     <h3>Mumbai</h3>
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing.</p>
+                    <p>Explore the bustling city of dreams with iconic landmarks like the Gateway of India and Marine
+                        Drive.</p>
                     <a href="user/destination-grid.php">read more <i class="fas fa-angle-right"></i></a>
                 </div>
             </div>
@@ -235,7 +249,7 @@ if (!isset($_SESSION['id'])) {
                 </div>
                 <div class="content">
                     <h3>Manali</h3>
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing.</p>
+                    <p>Experience the charm of snow-capped mountains, lush valleys, and adventure sports in Manali.</p>
                     <a href="user/destination-grid.php">read more <i class="fas fa-angle-right"></i></a>
                 </div>
             </div>
@@ -246,7 +260,7 @@ if (!isset($_SESSION['id'])) {
                 </div>
                 <div class="content">
                     <h3>Ladakh</h3>
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing.</p>
+                    <p>Discover the land of high passes, serene monasteries, and stunning landscapes in Ladakh.</p>
                     <a href="user/destination-grid.php">read more <i class="fas fa-angle-right"></i></a>
                 </div>
             </div>
@@ -257,7 +271,8 @@ if (!isset($_SESSION['id'])) {
                 </div>
                 <div class="content">
                     <h3>Kolkata</h3>
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing.</p>
+                    <p>Immerse yourself in the cultural heritage, colonial architecture, and vibrant festivals of
+                        Kolkata.</p>
                     <a href="user/destination-grid.php">read more <i class="fas fa-angle-right"></i></a>
                 </div>
             </div>
@@ -266,7 +281,6 @@ if (!isset($_SESSION['id'])) {
 
     </section>
 
-
     <!-- packages section ends -->
 
     <!-- services section starts  -->
@@ -274,51 +288,52 @@ if (!isset($_SESSION['id'])) {
     <section class="services" id="services">
 
         <div class="heading">
-            <span>our services</span>
-            <h1>countless expericences</h1>
+            <span>Our Services</span>
+            <h1>Countless Experiences</h1>
         </div>
 
         <div class="box-container">
 
             <div class="box" data-aos="zoom-in-up" data-aos-delay="150">
                 <i class="fas fa-globe"></i>
-                <h3>worldwide</h3>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Numquam, cumque.</p>
+                <h3>Worldwide</h3>
+                <p>Explore stunning destinations across the globe with personalized travel packages.</p>
             </div>
 
             <div class="box" data-aos="zoom-in-up" data-aos-delay="300">
                 <i class="fas fa-hiking"></i>
-                <h3>adventures</h3>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Numquam, cumque.</p>
+                <h3>Adventures</h3>
+                <p>Embark on thrilling adventures, from mountain trekking to jungle safaris.</p>
             </div>
 
             <div class="box" data-aos="zoom-in-up" data-aos-delay="450">
                 <i class="fas fa-utensils"></i>
-                <h3>food & drinks</h3>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Numquam, cumque.</p>
+                <h3>Food & Drinks</h3>
+                <p>Savor exquisite cuisines and enjoy local delicacies during your travels.</p>
             </div>
 
             <div class="box" data-aos="zoom-in-up" data-aos-delay="600">
                 <i class="fas fa-hotel"></i>
-                <h3>affordable hotels</h3>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Numquam, cumque.</p>
+                <h3>Affordable Hotels</h3>
+                <p>Stay at comfortable and budget-friendly hotels without compromising quality.</p>
             </div>
 
             <div class="box" data-aos="zoom-in-up" data-aos-delay="750">
                 <i class="fas fa-wallet"></i>
-                <h3>affordable price</h3>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Numquam, cumque.</p>
+                <h3>Affordable Prices</h3>
+                <p>Enjoy competitive prices with unmatched value for unforgettable journeys.</p>
             </div>
 
             <div class="box" data-aos="zoom-in-up" data-aos-delay="900">
                 <i class="fas fa-headset"></i>
-                <h3>24/7 support</h3>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Numquam, cumque.</p>
+                <h3>24/7 Support</h3>
+                <p>Our dedicated support team is available round-the-clock to assist you.</p>
             </div>
 
         </div>
 
     </section>
+
 
     <!-- services section ends -->
 
@@ -333,7 +348,7 @@ if (!isset($_SESSION['id'])) {
         <div class="box-container">
 
             <div class="box" data-aos="zoom-in-up" data-aos-delay="150">
-                <img src="images/goa.jpg" alt="...">
+                <img src="images/goa.jpg" alt="..." loading="lazy">
                 <span>travel spot</span>
                 <h3>Goa</h3>
             </div>
@@ -396,52 +411,53 @@ if (!isset($_SESSION['id'])) {
     <section class="review">
 
         <div class="content" data-aos="fade-right" data-aos-delay="300">
-            <span>testimonials</span>
-            <h3>good news from our clients</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda laudantium corporis fugiat quae unde
-                perspiciatis similique ab modi enim consequatur aperiam cumque distinctio facilis sit, debitis possimus
-                asperiores non harum.</p>
+            <span>Testimonials</span>
+            <h3>Good News from Our Clients</h3>
+            <p>Our clients love sharing their experiences with us, and we are thrilled to receive their kind words.</p>
         </div>
 
         <div class="box-container" data-aos="fade-left" data-aos-delay="600">
 
             <div class="box">
-                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quia, ratione.</p>
+                <p>The trip was perfectly organized, and the team ensured every detail was taken care of. Highly
+                    recommended!</p>
                 <div class="user">
                     <img src="images/pic1.png" alt="#" loading="lazy">
                     <div class="info">
                         <h3>Aditya Singh</h3>
-                        <span>designer</span>
+                        <span>Travel Enthusiast</span>
                     </div>
                 </div>
             </div>
             <div class="box">
-                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quia, ratione.</p>
+                <p>I had an amazing adventure! The guides were knowledgeable, and the experience was unforgettable.
+                    Thank you!</p>
                 <div class="user">
                     <img src="images/pic2.png" alt="#" loading="lazy">
                     <div class="info">
                         <h3>Asish Sharma</h3>
-                        <span>designer</span>
+                        <span>Adventure Lover</span>
                     </div>
                 </div>
             </div>
             <div class="box">
-                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quia, ratione.</p>
+                <p>The accommodations were top-notch, and the team provided exceptional service throughout my journey.
+                    Great job!</p>
                 <div class="user">
                     <img src="images/pic3.png" alt="#" loading="lazy">
                     <div class="info">
                         <h3>Dilip Kumar</h3>
-                        <span>designer</span>
+                        <span>Frequent Traveler</span>
                     </div>
                 </div>
             </div>
             <div class="box">
-                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quia, ratione.</p>
+                <p>From booking to the trip itself, everything was seamless. I’ll definitely travel with them again!</p>
                 <div class="user">
                     <img src="images/pic4.png" alt="#" loading="lazy">
                     <div class="info">
                         <h3>Rohit Kumar</h3>
-                        <span>designer</span>
+                        <span>Solo Traveler</span>
                     </div>
                 </div>
             </div>
@@ -449,6 +465,7 @@ if (!isset($_SESSION['id'])) {
         </div>
 
     </section>
+
     <!-- review section starts  -->
 
     <!-- brand section  -->
@@ -515,14 +532,16 @@ if (!isset($_SESSION['id'])) {
 
         </div>
 
-        <div class="credit">created by <span>Chandi, Sujeet, Rohit</span> | all rights reserved!</div>
+        <div class="credit">created by <a href="https://github.com/Chandi977"><span>Chandi</span><a /> <a
+                    href="https://github.com/Anuragv-001"><span>, Anurag </span><a />| all
+                    rights reserved!
+        </div>
 
     </section>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <!-- <script src="js/aos.js"></script> -->
     <script type="module" src="js/script.js"></script>
-
 
     <!-- custom js file link  -->
     <script>
@@ -551,10 +570,6 @@ if (!isset($_SESSION['id'])) {
     <!-- <script src="js/glide.min.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Glide.js/3.4.1/glide.min.js"></script>
     <!-- Animate On Scroll -->
-
-
-
-
 </body>
 
 </html>

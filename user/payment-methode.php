@@ -1,12 +1,14 @@
 <?php require 'helpers/setting.php';?>
+
 <?php
+include '../config.php';
 // if (isset($_POST['sub'])) {
-    $al = mysqli_connect("localhost", "root", "", "banjara tour and travel");
+    // $conn = mysqli_connect("localhost", "root", "", "banjara tour and travel");
     $id = $_GET['cartid'];
     // $hotelid=
-    // $p = mysqli_query($al, "SELECT * FROM holiday WHERE id='$id'");
+    // $p = mysqli_query($conn, "SELECT * FROM holiday WHERE id='$id'");
     
-    $getinvoice = mysqli_query($al, "SELECT * FROM cart WHERE id='$id'");
+    $getinvoice = mysqli_query($conn, "SELECT * FROM cart WHERE id='$id'");
     $invoice = mysqli_fetch_array($getinvoice);
     
     $checkin = $invoice['checkin'];
@@ -24,7 +26,7 @@
     $total = $invoice['total'];
     
     $hotelid = $invoice['hotelid'];
-    $foo = mysqli_query($al, "SELECT * FROM holiday WHERE id='$hotelid'");
+    $foo = mysqli_query($conn, "SELECT * FROM holiday WHERE id='$hotelid'");
     $foodata = mysqli_fetch_array($foo);
     $hotelcharge = $foodata['hotelcharge'];
     $totalhotelcharge = $hotelcharge*($days-1);
@@ -35,7 +37,7 @@
     $totalamount = $totalhotelcharge + $totalguidecharge + $servicecharge;
     $perc=(5 / 100) * $totalamount;
     $maintotal = $perc+$totalamount;
-    $cartid = mysqli_query($al,"SELECT AUTO_INCREMENT FROM information_schema.TABLES WHERE TABLE_SCHEMA = 'banjara tour and travel' AND TABLE_NAME = 'cart'");
+    $cartid = mysqli_query($conn,"SELECT AUTO_INCREMENT FROM information_schema.TABLES WHERE TABLE_SCHEMA = 'banjara tour and travel' AND TABLE_NAME = 'cart'");
     $cartdata= mysqli_fetch_array($cartid);
     $cartdata=$cartdata[0]-1;
 // }

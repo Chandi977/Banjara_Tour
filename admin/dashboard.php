@@ -1,5 +1,4 @@
 <?php
-include("../config.php"); // Include the config.php file to establish the database connection
 session_start();
 
 if (!isset($_SESSION['aid'])) {
@@ -9,13 +8,12 @@ if (!isset($_SESSION['aid'])) {
 $aid = $_SESSION['aid'];
 $info = "";
 
-$al = mysqli_connect($host, $username, $password, $database); // Establish the database connection using the configuration from config.php
-
-if (!$al) {
+include("../config.php"); // Include the config.php file to establish the database connection
+if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-$datafrom = mysqli_query($al, "SELECT * FROM invoice");
+$datafrom = mysqli_query($conn, "SELECT * FROM invoice");
 $data = mysqli_fetch_array($datafrom);
 ?>
 <!DOCTYPE html>
@@ -83,8 +81,8 @@ $data = mysqli_fetch_array($datafrom);
             </ul>
         </div>
         <?php
-            $al = mysqli_connect("localhost", "root", "", "banjara tour and travel");
-            $datafrom = mysqli_query($al,"select * from invoice");
+            
+            $datafrom = mysqli_query($conn,"select * from invoice");
             $data = mysqli_fetch_array($datafrom);
             ?>
         <div class="main-content w-100 p-5">
@@ -96,7 +94,7 @@ $data = mysqli_fetch_array($datafrom);
                                 <div class="box-topic">Total Order</div>
                                 <div class="number">
                                     <?php 
-                                     $sum = mysqli_query($al,"SELECT SUM(billamount) FROM invoice");
+                                     $sum = mysqli_query($conn,"SELECT SUM(billamount) FROM invoice");
                                      $sumdata = mysqli_fetch_array($sum);
                                      echo $sumdata[0];
                                      ?>
@@ -110,7 +108,7 @@ $data = mysqli_fetch_array($datafrom);
                                 <div class="box-topic">Total bookings</div>
                                 <div class="number">
                                     <?php
-                                        $column = mysqli_query($al,"select count(*) from invoice");
+                                        $column = mysqli_query($conn,"select count(*) from invoice");
                                         $columndata = mysqli_fetch_array($column);
                                         // $columndata = explode(',',$column);
                                         echo $columndata[0];
@@ -125,7 +123,7 @@ $data = mysqli_fetch_array($datafrom);
                                 <div class="box-topic">Total Packages</div>
                                 <div class="number">
                                     <?php
-                                        $column = mysqli_query($al,"select count(*) from holiday");
+                                        $column = mysqli_query($conn,"select count(*) from holiday");
                                         $columndata = mysqli_fetch_array($column);
                                         // $columndata = explode(',',$column);
                                         echo $columndata[0];
@@ -139,7 +137,7 @@ $data = mysqli_fetch_array($datafrom);
                                 <div class="box-topic">Total User</div>
                                 <div class="number">
                                     <?php
-                                        $column = mysqli_query($al,"select count(*) from customers");
+                                        $column = mysqli_query($conn,"select count(*) from customers");
                                         $columndata = mysqli_fetch_array($column);
                                         // $columndata = explode(',',$column);
                                         echo $columndata[0];
@@ -170,56 +168,47 @@ $data = mysqli_fetch_array($datafrom);
                                     <!-- <th class="main">Delete</th> -->
                                 </tr>
                                 <?php
-                                    // $al = mysqli_connect("localhost", "root", "", "banjara tour and travel");
-                                    $u = 1;
-                                    $x = mysqli_query($al, "SELECT * FROM invoice");
-                                    while ($y = mysqli_fetch_array($x)) {
+                                    
+                                    if (!$conn) {
+                                        die("Connection failed: " . mysqli_connect_error());
+                                    }
 
-                                        if ($u == 4)
-                                            break; ?>
-                                <tr class="table-tr">
-                                    <td class="table-td">
-                                        <?php echo $u;?>
-                                    </td>
-                                    <td class="table-td">
-                                        <?php echo $y['billname'];?>
-                                    </td>
-                                    <td class="table-td">
-                                        <?php 
-                                     if ($y['billupi']) {
-                                         echo 'UPI';
-                                     } else {
-                                         echo 'Card';
-                                     }
-                                     ?>
-                                    </td>
-                                    <td class="table-td">
-                                        <?php
-                                         $cartid = $y['userbookingid'];
-                                            $cart = mysqli_query($al, "SELECT * FROM cart where id = $cartid");
-                                            $cartdata = mysqli_fetch_array($cart);
-                                            echo $cartdata['checkin'] .' > '. $cartdata['checkout'];
-                                          ?>
-                                    </td>
-                                    <td class="table-td">
-                                        <?php echo $y['billamount'];?>
-                                    </td>
-                                    <td class="table-td">
-                                        <?php echo $cartdata['adult']+$cartdata['children'];?>
-                                    </td>
-                                    <td class="table-td">
-                                        <?php echo $cartdata['destination'];?>
-                                    </td>
-                                    <td class="table-td">
-                                        <?php echo $cartdata['hotel'];?> </td>
-                                    <td class="table-td" id="delete-id">
-                                        <?php echo $y['userbookingid'];?>
-                                    </td>
-                                    <!-- <td class="table-td"><button onclick="myFunction()"><a id="deletlist" href="#"
-                                                 class="link">Delete</a></button></td> -->
-                                </tr>
-                                <?php
-                                  $u++;} ?>
+                                    $x = mysqli_query($conn, "SELECT * FROM invoice");
+                                    if ($x && mysqli_num_rows($x) > 0) {
+                                        $u = 1;
+                                        while ($y = mysqli_fetch_array($x)) {
+                                            if ($u == 4) break;
+                                            $cartid = $y['userbookingid'] ?? null;
+                                            $cartdata = [];
+                                            if ($cartid) {
+                                                $cart = mysqli_query($conn, "SELECT * FROM cart WHERE id = $cartid");
+                                                if ($cart && mysqli_num_rows($cart) > 0) {
+                                                    $cartdata = mysqli_fetch_array($cart);
+                                                }
+                                            }
+
+                                            echo '<tr class="table-tr">';
+                                            echo '<td class="table-td">' . $u . '</td>';
+                                            echo '<td class="table-td">' . ($y['billname'] ?? 'N/A') . '</td>';
+                                            echo '<td class="table-td">' . ($y['billupi'] ? 'UPI' : 'Card') . '</td>';
+                                            echo '<td class="table-td">' . (isset($cartdata['checkin'], $cartdata['checkout'])
+                                                ? $cartdata['checkin'] . ' > ' . $cartdata['checkout']
+                                                : 'Date not available') . '</td>';
+                                            echo '<td class="table-td">' . ($y['billamount'] ?? '0') . '</td>';
+                                            echo '<td class="table-td">' . (isset($cartdata['adult'], $cartdata['children'])
+                                                ? $cartdata['adult'] + $cartdata['children']
+                                                : '0') . '</td>';
+                                            echo '<td class="table-td">' . ($cartdata['destination'] ?? 'N/A') . '</td>';
+                                            echo '<td class="table-td">' . ($cartdata['hotel'] ?? 'N/A') . '</td>';
+                                            echo '<td class="table-td">' . $cartid . '</td>';
+                                            echo '</tr>';
+
+                                            $u++;
+                                        }
+                                    } else {
+                                    echo "No invoices found.";
+                                    }
+                                ?>
                             </table>
                         </div>
                         <div class="top-sales box">
@@ -227,8 +216,8 @@ $data = mysqli_fetch_array($datafrom);
                                 <h2>Top Selling</h2>
                             </div>
                             <?php
-                                $al = mysqli_connect("localhost", "root", "", "banjara tour and travel");
-                                $x = mysqli_query($al, "SELECT * FROM holiday");
+                                
+                                $x = mysqli_query($conn, "SELECT * FROM holiday");
                                 $t = 1;
                                 while ($y = mysqli_fetch_array($x)) {
                                     if ($t == 6)
@@ -274,61 +263,47 @@ $data = mysqli_fetch_array($datafrom);
                     </tr>
                     <?php
                         $u = 1;
-                        // $datafrom = mysqli_query($al,"select * from invoice");
-                        $x = mysqli_query($al, "SELECT * FROM invoice");
-                        while ($y = mysqli_fetch_array($x)) {
-                        ?>
+                        // Fetch all invoices
+                        $x = mysqli_query($conn, "SELECT * FROM invoice");
+                        if ($x && mysqli_num_rows($x) > 0) { // Check if the query is valid and has results
+                            while ($y = mysqli_fetch_array($x)) { ?>
                     <tr class="labels">
                         <td class="load-table-td">
                             <?php 
-                             echo $u;
-                                    $u++;
+                                echo $u;
+                                $u++;
+                            ?>
+                        </td>
+                        <td class="load-table-td"><?php echo isset($y['billname']) ? $y['billname'] : 'N/A'; ?></td>
+                        <td class="load-table-td"><?php echo isset($y['billemail']) ? $y['billemail'] : 'N/A'; ?></td>
+                        <td class="load-table-td">
+                            <?php echo $y['journeystart']?>
+                        </td>
+                        <td class="load-table-td"><?php echo isset($y['billamount']) ? $y['billamount'] : '0'; ?></td>
+                        <td class="load-table-td">
+                            <?php
+                                    if (isset($cartdata['adult'], $cartdata['children'])) {
+                                        echo $cartdata['adult'] + $cartdata['children'];
+                                    } else {
+                                        echo '0';
+                                    }
                                     ?>
                         </td>
-                        <td class="load-table-td"><?php 
-                          echo $y['billname'];
-                         ?></td>
-                        <td class="load-table-td"><?php 
-                         echo $y['billemail'];
-                         ?></td>
-                        <td class="load-table-td"><?php
-                           $cartid = $y['userbookingid'];
-                           $cart = mysqli_query($al, "SELECT * FROM cart where id = $cartid");
-                           $cartdata = mysqli_fetch_array($cart);
-                           echo $cartdata['checkin'] .' > '. $cartdata['checkout'];
-                           ?></td>
-                        <td class="load-table-td"><?php echo $y['billamount'];?></td>
                         <td class="load-table-td">
-                            <?php echo $cartdata['adult']+$cartdata['children'];?></td>
-                        <td class="load-table-td"><?php echo $cartdata['destination'];?></td>
-                        <td class="load-table-td"><?php echo $cartdata['hotel'];?></td>
-                        <td class="load-table-td" id="delete-id"><?php 
-                                     if ($y['billupi']) {
-                                         echo 'UPI';
-                                     } else {
-                                         echo 'Card';
-                                     }
-                                     ?></td>
-                        <td class="load-table-td"><?php echo $y['transactiondate'];?></td>
-                        <!-- <td class="load-table-td"><button onclick="myFunction(<?php $suprem; ?>)"><a id="deletlist"
-                                     href="#" class="link">Delete</a></button></td> -->
-                        <script>
-                        function deletehrefclass() {
-                            var r = confirm("Press a button!");
-                            if (r == true) {
-                                document.getElementById("#deletehref").href = "deleteH.php?dd=<?php 
-                                    // echo $y['id'];
-                                  ?>";
-                            } else {
-                                document.getElementById("#deletehref").href = "#";
-                            }
-
-                        }
-                        </script>
+                            <?php echo isset($cartdata['destination']) ? $cartdata['destination'] : 'N/A'; ?></td>
+                        <td class="load-table-td"><?php echo isset($cartdata['hotel']) ? $cartdata['hotel'] : 'N/A'; ?>
+                        </td>
+                        <td class="load-table-td" id="delete-id">
+                            <?php echo $y['billupi'] ? 'UPI' : 'Card'; ?>
+                        </td>
+                        <td class="load-table-td">
+                            <?php echo isset($y['transactiondate']) ? $y['transactiondate'] : 'N/A'; ?></td>
                     </tr>
-                    <?php 
-                    } 
-                    ?>
+                    <?php }
+                        } else {
+                            echo '<tr><td colspan="10">No invoices found</td></tr>';
+                        }
+                        ?>
                 </table>
             </div>
 
@@ -408,7 +383,7 @@ $data = mysqli_fetch_array($datafrom);
                             <?php
                         $u = 1;
                         $x = "SELECT * FROM holiday";
-                        $result = mysqli_query($al, $x);
+                        $result = mysqli_query($conn, $x);
                         echo '<table class="table">
                         <thead>
                             <tr class="table-tr">
