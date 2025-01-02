@@ -37,8 +37,8 @@ if (!isset($_SESSION['id'])) {
     <!-- font awesome cdn link  -->
     <link rel="stylesheet" href="css/aos.css">
 
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Glide.js/3.4.1/css/glide.core.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Glide.js/3.4.1/css/glide.theme.min.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Glide.js/3.4.1/css/glide.core.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Glide.js/3.4.1/css/glide.theme.min.css">
     <link rel="stylesheet" href="js/fontawesome-free-6.0.0-beta3-web/css/all.min.css">
 
     <!-- custom css file link  -->

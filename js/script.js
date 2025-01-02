@@ -1,4 +1,4 @@
-import Swiper from "https://unpkg.com/swiper@7/swiper-bundle.esm.browser.min.js";
+// import Swiper from "https://unpkg.com/swiper@7/swiper-bundle.esm.browser.min.js";
 
 // DOM element selectors
 const searchBtn = document.querySelector("#search-btn");
@@ -38,11 +38,16 @@ const initializeSwiper = (selector, autoplayDelay) => {
         delay: autoplayDelay,
         disableOnInteraction: false,
       },
+      navigation: {
+        nextEl: ".swiper-button-next", // Link the next button
+        prevEl: ".swiper-button-prev", // Link the prev button
+      },
+      slidesPerView: 1,
       breakpoints: {
         450: { slidesPerView: 1 },
-        768: { slidesPerView: 2 },
-        991: { slidesPerView: 3 },
-        1200: { slidesPerView: 4 },
+        768: { slidesPerView: 1 },
+        991: { slidesPerView: 1 },
+        1200: { slidesPerView: 1 },
       },
     });
   }
@@ -51,9 +56,9 @@ const initializeSwiper = (selector, autoplayDelay) => {
 // Initialize Swipers with different autoplay delays
 initializeSwiper(".brand-slider", 5000);
 initializeSwiper(".gallery-slider1", 1000);
-initializeSwiper(".gallery-slider2", 3000);
-initializeSwiper(".gallery-slider3", 5000);
-initializeSwiper(".home-slider", 5000);
+initializeSwiper(".gallery-slider2", 2000);
+initializeSwiper(".gallery-slider3", 3000);
+initializeSwiper(".home-slider", 4000);
 
 // Glide Initialization Function
 const initializeGlide = (selector, perView) => {
